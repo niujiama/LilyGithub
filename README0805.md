@@ -1,1 +1,2 @@
-This is my first readme file from git of home.
+#第一次作业
+./python_work1
