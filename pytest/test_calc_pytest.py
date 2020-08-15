@@ -14,14 +14,18 @@ import yaml
 '''
 
 # 用yaml做数据驱动
-# def get_data():
-#     with open('./data/calc.yml', encoding='utf-8') as f:
-#         mydata = yaml.safe_load(f)
-#         adddata = mydata['add']['data']
-#         myids = mydata['add']['myids']
-#     return [adddata, myids]
+def get_data():
+    with open('./data/calc.yml', encoding='utf-8') as f:
+        mydata = yaml.safe_load(f)
+        addData = mydata['add']['data']
+        addIds = mydata['add']['myids']
+        addFloatData = mydata['add_float']['data']
+        addFloatIds = mydata['add_float']['myids']
+        divData = mydata['div']['data']
+        divIds = mydata['div']['myids']
+    return [addData, addIds, addFloatData, addFloatIds, divData, divIds]
 
-#计算类
+# 计算类
 class TestCalc:
     def setup_class(self):
         print("开始计算")
@@ -29,45 +33,37 @@ class TestCalc:
     def teardown_class(self):
         print("结束计算")
 
-    @pytest.mark.add
-    @pytest.mark.parametrize('a,b,expect', [
-        (1, 1, 2),
-        (100, 200, 300),
-        ('a', 'b', 'ab'),
-        (0.1, 0.2, 0.3),
-        (-1, -2, -3)
-    ])
-    # @pytest.mark.parametrize('a,b,expect', )
+    #定义整数加法方法
+    # @pytest.mark.add
+    @pytest.mark.parametrize('a,b,expect', get_data()[0], ids=get_data()[1])
     def test_add(self, a, b, expect):
-        '''
-        测试相加
-        '''
-        print("测试相加")
-        result = a + b
-        assert expect == result
-
-    @pytest.mark.parametrize('a,b,expect', [
-        (0.1, 0.1, 0.2),
-        (0.1, 0.2, 0.3)
-    ])
-    def test_add_float(self, a, b, expect):
-        result = round((a + b), 2)
-        assert expect == result
-
-    @pytest.mark.parametrize('a,b,expect', [
-        (1, 1, 1),
-        (2, 1, 2),
-        (5, 2.5, 2),
-        (1, 2, 0.5),
-        (1, 0, 0),
-        (0, 1, 0),
-        (1, 2, 5),
-        ('a', 'b', 'c')
-    ])
-    def test_div(self, a, b, expect):
         try:
-            result = (a/b)
+            result = a + b
+            print(f' 测试用例：{a}+{b}={result}')
             assert expect == result
-        except (ZeroDivisionError, TypeError) as err:
+        except:
+            print('测试数据异常！请检查测试数据是否都为整数')
             raise ValueError
 
+    #定义浮点数加法方法
+    # @pytest.mark.add_float
+    @pytest.mark.parametrize('a,b,expect', get_data()[2], ids=get_data()[3])
+    def test_add_float(self, a, b, expect):
+        try:
+            result = round((a + b), 2)
+            print(f' 测试用例：{a}+{b}={result}')
+            assert expect == result
+        except:
+            print('测试数据异常！请检查测试数据是否都为浮点数')
+            raise ValueError
+
+    # @pytest.mark.div
+    @pytest.mark.parametrize('a,b,expect', get_data()[4], ids=get_data()[5])
+    def test_div(self, a, b, expect):
+        try:
+            result = round((a/b), 2)
+            print(f' 测试用例：{a}//{b}={result}')
+            assert expect == result
+        except:
+            print('测试数据异常！请检查测试数据是否都数值型，且除数不能为零')
+            raise ValueError
