@@ -5,17 +5,16 @@ class TestHogwarts():
     def setup(self):
         self.driver = webdriver.Chrome()
         self.driver.maximize_window()
-        # self.driver.implicitly_wait(5)
+        self.driver.implicitly_wait(5)
 
     def teardown(self):
-        self.driver.quit()
+        # self.driver.quit()
+        pass
 
     def test_hogwarts(self):
         self.driver.get('https://ceshiren.com/')
-        time.sleep(3)
-        self.driver.find_element_by_id('ember187').click()
-        time.sleep(3)
-        self.driver.find_element_by_link_text('雪球app抓不到包').click()
-        time.sleep(3)
+        self.driver.find_element_by_link_text('热门').click()
+        self.driver.find_element_by_link_text('测试人社区在线沙龙第三期答疑帖').click()
+
 
 
