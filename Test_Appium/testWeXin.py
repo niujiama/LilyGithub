@@ -79,6 +79,7 @@ class TestDemo:
         self.test_addOne('删除用户', '女', '13466668888')
         preStr = self.driver.find_element(MobileBy.XPATH, "//*[contains(@text, '人未加入')]").text
         self.driver.find_element(MobileBy.XPATH, "//*[contains(@text, '删除用户')]").click()
+
         self.driver.find_element(MobileBy.XPATH, "//*[@resource-id='com.tencent.wework:id/hjz']").click()
         self.driver.find_element(MobileBy.XPATH, "//*[@resource-id='com.tencent.wework:id/b53']").click()
         self.driver.find_element(MobileBy.XPATH, "//*[@resource-id='com.tencent.wework:id/e_1']").click()

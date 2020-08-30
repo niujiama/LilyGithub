@@ -17,7 +17,7 @@
 """
 import shelve
 
-from Test_selenium.Base import Base
+from pytest.data.Test_selenium.Base import Base
 
 class TestExport(Base):
     def test_cookie(self):

@@ -1,6 +1,6 @@
-from Test_selenium.Test_PageObject.page.base_page import BasePage
-from Test_selenium.Test_PageObject.page.contact_page import ContactPage
-from Test_selenium.Test_PageObject.page.add_member_page import AddMemberPage
+from pytest.data.Test_selenium.Test_PageObject.page.base_page import BasePage
+from pytest.data.Test_selenium.Test_PageObject.page.contact_page import ContactPage
+from pytest.data.Test_selenium.Test_PageObject.page.add_member_page import AddMemberPage
 
 class MainPage(BasePage):
     _url = 'https://work.weixin.qq.com/wework_admin/frame#index'

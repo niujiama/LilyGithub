@@ -1,4 +1,4 @@
-from Test_selenium.Test_PageObject.page.base_page import BasePage
+from pytest.data.Test_selenium.Test_PageObject.page.base_page import BasePage
 
 class ContactPage(BasePage):
     def go_to_add_member(self):

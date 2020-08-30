@@ -1,4 +1,4 @@
-from Test_selenium.Test_PageObject.page.main_page import MainPage
+from pytest.data.Test_selenium.Test_PageObject.page.main_page import MainPage
 
 
 class TestAddMember:
