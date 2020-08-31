@@ -7,12 +7,13 @@
 # pip install appium-python-client 里面提供的api
 from time import sleep, time
 
+import pytest
 from appium import webdriver
 from appium.webdriver.common.mobileby import MobileBy
 
 
 class TestDemo:
-    def setup(self):
+    def setup_class(self):
         #初始化capability
         caps = {}
         caps["platformName"] = "android"
@@ -25,9 +26,10 @@ class TestDemo:
         # 隐式等待
         self.driver.implicitly_wait(15)
 
-    def teardown(self):
+    def teardown_class(self):
         self.driver.quit()
 
+    @pytest.mark.dependency()
     def test_addOne(self, name='测试添加', gender='男', phoneNum='13288889999'):
         '''
         用例标题：添加联系人
@@ -43,11 +45,15 @@ class TestDemo:
             7、验证保存成功
             8、返回【通讯录】
         '''
-        name = name
-        gender = gender
-        phoneNum = phoneNum
+        # name = name
+        # gender = gender
+        # phoneNum = phoneNum
         self.driver.find_element(MobileBy.XPATH, "//*[@text='通讯录']").click()
-        self.driver.find_element(MobileBy.XPATH, "//*[@text='添加成员']").click()
+        self.driver.find_element(MobileBy.ANDROID_UIAUTOMATOR,
+                                 'new UiScrollable(new UiSelector()'
+                                 '.scrollable(true).instance(0))'
+                                 '.scrollIntoView(new UiSelector()'
+                                 '.text("添加成员").instance(0));').click()
         self.driver.find_element(MobileBy.XPATH, "//*[@text='手动输入添加']").click()
         self.driver.find_element(MobileBy.XPATH, "//*[contains(@text, '姓名')]/../android.widget.EditText").send_keys(name)
         self.driver.find_element(MobileBy.ID, "com.tencent.wework:id/e__").click()
@@ -62,7 +68,8 @@ class TestDemo:
         self.driver.back()
         print('添加成功')
 
-    def test_delOne(self):
+    @pytest.mark.dependency(depends=['TestDemo::test_addOne'])
+    def test_delOne(self, name='测试添加'):
         '''
         用例标题：删除联系人
         前提条件
@@ -73,21 +80,30 @@ class TestDemo:
             3、点击【。。。】，进入更多页面
             4、点击【编辑成员】，进入编辑成员
             5、点击【删除成员】
-            6、在确认弹框中，点击【确定】
+            6、在确认弹框中，点击【删除】
             7、等待3秒，断言【通讯录】中不存在【删除用户】？？？要研究下怎么做到
         '''
-        self.test_addOne('删除用户', '女', '13466668888')
-        preStr = self.driver.find_element(MobileBy.XPATH, "//*[contains(@text, '人未加入')]").text
-        self.driver.find_element(MobileBy.XPATH, "//*[contains(@text, '删除用户')]").click()
-
+        self.driver.find_element(MobileBy.XPATH, "//*[@text='通讯录']").click()
+        # 查找当前页面name的元素们
+        preEles = self.driver.find_elements(MobileBy.XPATH, f"//*[@text='{name}']")
+        # 点击找到的第一个name元素
+        self.driver.find_element(MobileBy.XPATH,  f"//*[@text='{name}']").click()
+        #点击。。。
         self.driver.find_element(MobileBy.XPATH, "//*[@resource-id='com.tencent.wework:id/hjz']").click()
+        # 点击【编辑成员】
         self.driver.find_element(MobileBy.XPATH, "//*[@resource-id='com.tencent.wework:id/b53']").click()
-        self.driver.find_element(MobileBy.XPATH, "//*[@resource-id='com.tencent.wework:id/e_1']").click()
+        # 点击【删除成员】
+        self.driver.find_element(MobileBy.ANDROID_UIAUTOMATOR,
+                                 'new UiScrollable(new UiSelector()'
+                                 '.scrollable(true).instance(0))'
+                                 '.scrollIntoView(new UiSelector()'
+                                 '.text("删除成员").instance(0));').click()
+        # 点击【删除】
         self.driver.find_element(MobileBy.XPATH, "//*[@resource-id='com.tencent.wework:id/bfe']").click()
-        sleep(8)
-        curStr = self.driver.find_element(MobileBy.XPATH, "//*[contains(@text, '人未加入')]").text
-        preNum = int(preStr[1])
-        curNum = int(curStr[1])
+        sleep(2)
+        curEles = self.driver.find_elements(MobileBy.XPATH, f"//*[@text='{name}']")
+        preNum = len(preEles)
+        curNum = len(curEles)
         assert preNum == (curNum + 1)
         print('删除成功！')
 
