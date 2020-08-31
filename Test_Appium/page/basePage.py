@@ -16,7 +16,7 @@ class BasePage:
     def find_and_sendKeys(self, locator, value):
         self.find(locator).send_keys(value)
 
-    def find_by_scroll_and_click(self):
+    def find_by_scroll_and_click(self, text):
         element = (MobileBy.ANDROID_UIAUTOMATOR,
                    'new UiScrollable(new UiSelector()'
                    '.scrollable(true).instance(0))'
@@ -25,7 +25,8 @@ class BasePage:
         self.find(element).click()
 
     def get_toast(self):
-        text = self.find(MobileBy.XPATH, "//*[@class='android.widget.Toast']").text
+        _toast_ele = (MobileBy.XPATH, "//*[@class='android.widget.Toast']")
+        text = self.find(_toast_ele).text
         return text
 
 

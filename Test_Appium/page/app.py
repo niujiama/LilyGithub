@@ -1,4 +1,4 @@
-from appium.webdriver import webdriver
+from appium import webdriver
 from Test_Appium.page.basePage import BasePage
 from Test_Appium.page.mainPage import MainPage
 
