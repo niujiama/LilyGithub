@@ -9,3 +9,7 @@ class MemberInvitPage(BasePage):
         _memberInvit_ele = (MobileBy.XPATH, "//*[@text='手动输入添加']")
         self.find_and_click(_memberInvit_ele)
         return ContactAddPage(self.driver)
+
+    def get_toastText(self):
+        text = self.get_toast()
+        return text

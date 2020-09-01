@@ -19,10 +19,10 @@ class TestCase:
     def test_addContact(self):
         name = "测试人员"
         gender = '女'
-        phone = '1234567899'
+        phone = '12345678999'
         page = self.main.goto_contactList().add_member().add_member_manul()\
             .add_name(name).add_gender(gender).add_phone(phone).save()
-        toast = page.get_toast()
+        toast = page.get_toastText()
         assert toast == '添加成功'
 
     # @pytest.mark.parametrize('name,gender,phonenum', get_contact())

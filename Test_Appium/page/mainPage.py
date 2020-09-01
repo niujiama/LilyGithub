@@ -5,9 +5,8 @@ from Test_Appium.page.contactListPage import ContactListPage
 
 
 class MainPage(BasePage):
-
+    _contactList_ele = (MobileBy.XPATH, "//*[@text='通讯录']")
     def goto_contactList(self):
-        _contactList_ele = (MobileBy.XPATH, "//*[@text='通讯录']")
-        self.find_and_click(_contactList_ele)
+        self.find_and_click(self._contactList_ele)
         return ContactListPage(self.driver)
 
