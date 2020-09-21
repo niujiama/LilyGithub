@@ -1,0 +1,7 @@
+login:
+  - find: {id: XXX}
+  - click
+  - find: {text: xxx}
+  - send_keys: xxx
+forget:
+  - 
