@@ -1,6 +1,5 @@
 import pytest
 
-
 class TestMutiParas:
 
     @pytest.mark.parametrize("a", [1, 2])
