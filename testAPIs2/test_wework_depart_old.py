@@ -20,7 +20,8 @@ class TestDep:
                     "parentid": 2,
                     "id": 8
                 }
-        r = requests.post(url, json=json)
+        # r = requests.post(url, json=json)
+        r = requests.request('GET', url, json=json)
         assert 0 == r.json()["errcode"]
 
 #测试部门列表

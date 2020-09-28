@@ -1,19 +1,21 @@
 import requests
+from test_reuquest.api_page.wework_utils import WeWorkUtils
+from test_reuquest.api_page.base_api import BaseApi
 
-class TestWework:
-    corpid="wwc1b939c47f6d8e32"
-    corpsecret="6e-e9pUV0QZnJppDPwzRZA9PCtKb9urb9TWNf-6v5fA"
-    def get_token(self):
-        url = f"https://qyapi.weixin.qq.com/cgi-bin/gettoken?corpid={self.corpid}&corpsecret={self.corpsecret}"
-        r = requests.get(url)
-        return r.json()["access_token"]
+
+
+class AddressPage(BaseApi):
+
+    def __init__(self):
+        self._corpsecret = "6e-e9pUV0QZnJppDPwzRZA9PCtKb9urb9TWNf-6v5fA"
+        self.utils = WeWorkUtils()
 
     def test_get(self):
-        token = self.get_token()
+        token = self.utils._get_token(self._corpsecret)
         userid= "CeShiRenYuan"
         url = f"https://qyapi.weixin.qq.com/cgi-bin/user/get?access_token={token}&userid={userid}"
         r = requests.get(url)
-        assert 0 == r.json()["errcode"]
+        return r.json()
 
     def test_add(self):
         token = self.get_token()
@@ -33,3 +35,4 @@ class TestWework:
         url = f"https://qyapi.weixin.qq.com/cgi-bin/user/delete?access_token={token}&userid={userid}"
         r = requests.get(url)
         assert 0 == r.json()["errcode"]
+

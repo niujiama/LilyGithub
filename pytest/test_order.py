@@ -2,6 +2,7 @@ import pytest
 
 
 class TestOrder:
+    @pytest.mark.parametrize()
     @pytest.mark.run(order=3)
     def test_one(self):
         print("this is test one")
