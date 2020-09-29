@@ -1,0 +1,20 @@
+ids: RadioList001--所有参数都正常赋值
+params:
+  rid: 1200000000099
+  clockid: 0
+  packagename: com.edog.car.ceshizhuanyong_kradio
+  carType: aio_3m_otfp
+  sign: 7350a61333bc65d644a66bbd4c20d5fb
+  sdkversion: 1.5.5
+  version: 2.7.1.0001
+  appid: ye8192
+  udid: 799151406a36cd306ac381036dca852b
+  deviceid: 799151406a36cd306ac381036dca852b
+  lat: 39.985405
+  channel: ceshizhuanyong_kradio
+  lng: 116.304996
+  os: android
+  openid: ye81922020042410009258
+expected:
+  method: result
+  value: 100
