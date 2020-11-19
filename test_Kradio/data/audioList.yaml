@@ -1,0 +1,48 @@
+-
+  ids: AudioList001--正常参数
+  params:
+    aid: 1100000000078
+    sorttype: 1
+    pagesize: 10
+    pagenum: 1
+    audioid: 1000026291583
+    os: android
+    lng: 116.336154
+    openid: ye81922020091810021402
+    packagename: com.edog.car.ceshizhuanyong_kradio
+    sign: 460df286154067d5034e44e0e676d4c6
+    channel: ceshizhuanyong_kradio
+    deviceid: 5535e23c52eb5166009dfb168a1fe2cc
+    version: 2.7.2.0001
+    sdkversion: 1.5.6
+    carType: HWOXF
+    appid: ye8192
+    udid: 5535e23c52eb5166009dfb168a1fe2cc
+    lat: 40.085469
+  expected:
+    method: result
+    value: 10
+-
+  ids: AudioList002--aid不存在
+  params:
+    aid: 11000000000789
+    sorttype: 1
+    pagesize: 10
+    pagenum: 1
+    audioid: 1000026291583
+    os: android
+    lng: 116.336154
+    openid: ye81922020091810021402
+    packagename: com.edog.car.ceshizhuanyong_kradio
+    sign: 460df286154067d5034e44e0e676d4c6
+    channel: ceshizhuanyong_kradio
+    deviceid: 5535e23c52eb5166009dfb168a1fe2cc
+    version: 2.7.2.0001
+    sdkversion: 1.5.6
+    carType: HWOXF
+    appid: ye8192
+    udid: 5535e23c52eb5166009dfb168a1fe2cc
+    lat: 40.085469
+  expected:
+    method: errcode
+    value: 40400

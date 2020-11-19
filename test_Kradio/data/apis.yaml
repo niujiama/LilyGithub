@@ -1,0 +1,6 @@
+radioList:
+  method: get
+  url: 'http://open.kaolafm.com/v2/radio/list'
+audioList:
+  method: get
+  url: 'http://open.kaolafm.com/v2/audio/list'
