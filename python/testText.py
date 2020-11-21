@@ -1,2 +1,4 @@
 with open('data/testText.txt') as f:
-    print(f.readlines())
+    rows = f.readlines()
+    for i in range(len(rows)):
+        print(rows[i])

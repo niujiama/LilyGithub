@@ -11,9 +11,10 @@ finally:
     print('发生或者没发生异常，都会执行这里！')
 
 # #自己抛出异常
-x = 10
+x = int(input('输入大于5的数，抛异常：'))
 if x > 5:
     raise Exception('这是一个自己抛出的异常！')
+print('异常后的语句')
 
 #自己定义异常类
 class MyException(Exception):
