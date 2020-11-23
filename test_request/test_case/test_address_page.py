@@ -1,4 +1,4 @@
-from test_reuquest.api_page.address_page import AddressPage
+from test_request.api_page.address_page import AddressPage
 
 
 class TestAddressPage:

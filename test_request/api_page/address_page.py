@@ -1,6 +1,6 @@
 import requests
-from test_reuquest.api_page.wework_utils import WeWorkUtils
-from test_reuquest.api_page.base_api import BaseApi
+from test_request.api_page.wework_utils import WeWorkUtils
+from test_request.api_page.base_api import BaseApi
 
 
 
