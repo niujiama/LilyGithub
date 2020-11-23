@@ -6,7 +6,6 @@ class TestWework:
     def setup_class(cls):
         cls.baseApi = BaseAPI()
         cls.baseApi.get_token()
-
         cls.contact = Contact()
 
     def test_add(self):
