@@ -7,11 +7,11 @@ data = {
 }
 print(data)
 print(type(data))
-#把json转换成str类型
+#将 Python 对象编码成 JSON 字符串
 data1 = json.dumps(data)
 print(data1)
 print(type(data1))
-# 把str类型转换成json类型
+# 将已编码的 JSON 字符串解码为 Python 对象
 data2 = json.loads(data1)
 print(data2)
 print(type(data2))

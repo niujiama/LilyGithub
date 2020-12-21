@@ -2,7 +2,6 @@ import pytest
 
 
 class TestOrder:
-    @pytest.mark.parametrize()
     @pytest.mark.run(order=3)
     def test_one(self):
         print("this is test one")
@@ -15,8 +14,11 @@ class TestOrder:
     def test_three(self):
         print("this is test three")
 
-    def test_four(self):
-        print("this is test four")
+    @pytest.mark.run(order=5)
+    @pytest.mark.parametrize('a', [1, 2, 3])
+    def test_four(self, a):
+        print(f"this is test four, a is {a}")
 
+    @pytest.mark.run(order=4)
     def test_five(self):
         print("this is test five")

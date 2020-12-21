@@ -21,21 +21,21 @@ class TestMutiParas:
     def test_foo2_1(self, a, d, b, c):
         print(f"this is a:{a}, d:{d}, b:{b}, c:{c}")
 
-    @pytest.mark.run(order=4)
+    @pytest.mark.run(order=5)
     @pytest.mark.parametrize("a, d", [{"a", "d"}])
     @pytest.mark.parametrize("b", [1, 2, 3])
     @pytest.mark.parametrize("c", ["x", "y", "z"])
     def test_foo2_2(self, a, d, b, c):
         print(f"this is a:{a}, d:{d}, b:{b}, c:{c}")
 
-    @pytest.mark.run(order=5)
+    @pytest.mark.run(order=4)
     def test_foo3(self):
         x = "{'a': 1, 'b': 2}"
         print(type(x))
         y = eval(x)
         print(type(y))
 
-    @pytest.mark.run(order=6)
+
     @pytest.mark.parametrize("method, url", [("get", "http://open.kaolafm.com/v2/radio/list")])
     @pytest.mark.parametrize("expected, params", [({"method": "result", "value": 100}, {
         "rid": 1200000000099,
@@ -54,8 +54,7 @@ class TestMutiParas:
         "os": "android",
         "openid": "ye81922020042410009258"
     })])
-
-    @pytest.mark.run(order=7)
+    @pytest.mark.run(order=6)
     def test_foo5(self, method, url, expected, params):
         r = requests.request(method=method, url=url, params=params)
         if expected["method"] == "errcode":

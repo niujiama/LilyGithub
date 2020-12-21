@@ -1,5 +1,7 @@
-from testAPIs2.api.baseAPI import BaseAPI
-from testAPIs2.api.contactAPI import Contact
+from test_weWork_APIs.api.baseAPI import BaseAPI
+from test_weWork_APIs.api.contactAPI import Contact
+
+#是否其他文件也被替换了
 
 class TestWework:
     @classmethod

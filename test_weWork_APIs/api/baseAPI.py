@@ -1,5 +1,6 @@
 import requests
 
+#是否其他文件也被替换了
 class BaseAPI:
     token = ""
 

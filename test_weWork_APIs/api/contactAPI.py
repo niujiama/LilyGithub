@@ -1,5 +1,5 @@
 import requests
-from testAPIs2.api.baseAPI import BaseAPI
+from test_weWork_APIs.api.baseAPI import BaseAPI
 
 class Contact:
     def add(self, json):
